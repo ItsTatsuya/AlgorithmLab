@@ -17,37 +17,34 @@ void bubbleSort(int arr[], int n)
     }
 }
 
-void getArray(int arr[], int n){
-    for(int i;i<n-1;i++){
-        cin >> arr[i];
+void printArray(int arr[], int n)
+{
+    cout << "[ ";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
     }
-
+    cout << "]";
 }
 
-void printArray(int arr[], int n){
-    cout <<"[ ";
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout <<"]";
-}
-
-int main(){
+int main()
+{
     int n;
     cout << "Enter the size of array:";
     cin >> n;
     int arr[n];
-    cout <<"\nEnter the Elements of Array:";
+    cout << "\nEnter the Elements of Array:";
 
-    for(int i = 0;i<n;i++){
+    for (int i = 0; i < n; i++)
+    {
         cin >> arr[i];
     }
 
-    cout <<"\nArray Before Sorting:";
-    printArray(arr,n);
-    bubbleSort(arr,n);
-    cout<<"\nArray After Sorting:";
-    printArray(arr,n);
+    cout << "\nArray Before Sorting:";
+    printArray(arr, n);
+    bubbleSort(arr, n);
+    cout << "\nArray After Sorting:";
+    printArray(arr, n);
 
     return 0;
 }
