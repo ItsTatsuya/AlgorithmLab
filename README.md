@@ -1,1 +1,5 @@
-# Repo for Algorithm Lab
+# Repository for Algorithm Lab Files
+
+- - [x] [**Linear Search**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/LinearSearch)
+- - [x] [**Bubble Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/BubbleSort)
+- - [x] [**Insertion Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/InsertionSort)
