@@ -1,11 +1,15 @@
 #include <iostream>
 using namespace std;
 
-void selectionSort(int arr[], int n){
-    for(int i=0;i<n-1;i++){
+void selectionSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
         int min = i;
-        for(int j=i+1;j<n;j++){
-            if(arr[j]<arr[min]){
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j] < arr[min])
+            {
                 min = j;
             }
         }
@@ -15,25 +19,29 @@ void selectionSort(int arr[], int n){
     }
 }
 
-void printArray(int arr[], int n){
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
+void printArray(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
     }
 }
 
-int main(){
+int main()
+{
     int n;
-    cout<<"Enter the size of array: ";
-    cin>>n;
+    cout << "Enter the size of array: ";
+    cin >> n;
     int arr[n];
-    cout<<"Enter the elements of array: ";
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+    cout << "Enter the elements of array: ";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
     }
-    cout<<"\nArray before sorting: ";
-    printArray(arr,n);
-    selectionSort(arr,n);
-    cout<<"\nArray after sorting: ";
-    printArray(arr,n);
+    cout << "\nArray before sorting: ";
+    printArray(arr, n);
+    selectionSort(arr, n);
+    cout << "\nArray after sorting: ";
+    printArray(arr, n);
     return 0;
 }
