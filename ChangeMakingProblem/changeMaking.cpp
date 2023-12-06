@@ -1,4 +1,3 @@
-/** change making problem*/
 #include <iostream>
 using namespace std;
 
@@ -35,6 +34,8 @@ int main() {
     int d[4] = {0, 1, 5, 10};
     int c[100], s[100];
     changeMaking(n, d, c, s);
+    cout << "Minimum number of coins required: " << c[n] << endl;
+    cout << "The coins are: ";
     printChange(n, d, s);
     return 0;
 }

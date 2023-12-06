@@ -1,4 +1,3 @@
-/*coin row problem using dynamic programming*/
 #include <iostream>
 using namespace std;
 
