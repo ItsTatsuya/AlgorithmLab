@@ -5,7 +5,7 @@
 - - [x] [**Insertion Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/InsertionSort)
 - - [x] [**Selection Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/SelectionSort)
 - - [x] [**Quick Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/QuickSort)
-- - [x] [**Dynamic Fibonacci Series**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/SelectionSort)
+- - [x] [**Dynamic Fibonacci Series**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/DynamicFibonacci)
 - - [x] [**Coin Row Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/CoinRowProblem)
 - - [x] [**Coin Change Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/ChangeMakingProblem)
 - - [x] [**Coin Collecting Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/CoinCollectingProblem)
