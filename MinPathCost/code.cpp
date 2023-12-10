@@ -1,5 +1,3 @@
-/*code for minimum path cost in a matrix*/
-
 #include <iostream>
 using namespace std;
 

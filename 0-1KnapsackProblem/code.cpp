@@ -1,5 +1,3 @@
-/*0-1 knapsack problem*/
-
 #include <iostream>
 using namespace std;
 

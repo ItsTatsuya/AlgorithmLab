@@ -23,7 +23,7 @@ void displayMatrix(int **arr, int n, int m) {
     }
 }
 
-// prints the path with arrows
+
 void printpath(int **arr, int n, int m) {
     int i = n - 1, j = m - 1;
     while (i != 0 || j != 0) {
