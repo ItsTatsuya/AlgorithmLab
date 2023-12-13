@@ -1,14 +1,39 @@
 # Repository for Algorithm Lab Files
 
-- - [x] [**Linear Search**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/LinearSearch)
-- - [x] [**Bubble Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/BubbleSort)
-- - [x] [**Insertion Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/InsertionSort)
-- - [x] [**Selection Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/SelectionSort)
-- - [x] [**Quick Sort**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/QuickSort)
-- - [x] [**Dynamic Fibonacci Series**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/DynamicFibonacci)
-- - [x] [**Coin Row Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/CoinRowProblem)
-- - [x] [**Coin Change Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/ChangeMakingProblem)
-- - [x] [**Coin Collecting Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/CoinCollectingProblem)
-- - [x] [**Minimum Path Cost in a matrix**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/MinPathCost)
-- - [x] [**0-1 Knapsack Problem**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/0-1KnapsackProblem)
-- - [x] [**Longest Common Subsequence**](https://github.com/ItsTatsuya/AlgorithmLab/tree/main/LongestSubsequence)
+- **Lab Cycle 1**
+
+1. **Linear Search** [20-09-2023]
+
+2. **Bubble Sort** [20-09-2023]
+
+3. **Insertion Sort** [27-09-2023]
+
+4. **Selection Sort** [27-09-2023]
+
+5. **Quick Sort** [04-10-2023]
+
+- **Lab Cycle 2**
+
+6. **Dijkstra Algorithm** [11-10-2023]
+
+7. **Bellman Ford Algorithm** [11-10-2023]
+
+8. **Prims Algorithm** [18-10-2023]
+
+9. **Krushkals Algorithm** [18-10-2023]
+
+- **Lab Cycle 3**
+
+10. **Dynamic Fibonacci Series** [26-10-2023]
+
+11. **Coin Row Problem** [26-10-2023]
+
+12. **Coin Change Problem** [08-11-2023]
+
+13. **Coin Collecting Problem** [13-11-2023]
+
+14. **Minimum Path Cost in a matrix** [15-11-2023]
+
+15. **0-1 Knapsack Problem** [22-11-2023]
+
+16. **Longest Common Subsequence** [13-12-2023]
