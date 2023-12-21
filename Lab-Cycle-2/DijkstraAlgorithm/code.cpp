@@ -1,54 +1,115 @@
 #include <iostream>
+#include <vector>
+#include <limits>
+#include <algorithm>
 using namespace std;
 
-int Dijakstra(int n, int cost[10][10], int source, int dest)
+#define INF std::numeric_limits<int>::max()
+
+class Graph
 {
-    int dist[10], visited[10], min, u, v;
-    for (int i = 1; i <= n; i++)
+public:
+    int V;
+    std::vector<std::vector<std::pair<int, int>>> adj;
+
+    Graph(int vertices) : V(vertices), adj(vertices) {}
+
+    void addEdge(int u, int v, int weight)
     {
-        dist[i] = cost[source][i];
-        visited[i] = 0;
+        adj[u].emplace_back(v, weight);
+        adj[v].emplace_back(u, weight);
     }
-    visited[source] = 1;
-    for (int i = 1; i <= n; i++)
+};
+
+void initializeSingleSource(Graph &G, int s, std::vector<int> &d, std::vector<int> &pi)
+{
+    for (int v = 0; v < G.V; ++v)
     {
-        min = 999;
-        for (int j = 1; j <= n; j++)
+        d[v] = INF;
+        pi[v] = -1;
+    }
+    d[s] = 0;
+}
+
+void relax(int u, int v, int weight, std::vector<int> &d, std::vector<int> &pi)
+{
+    if (d[v] > d[u] + weight)
+    {
+        d[v] = d[u] + weight;
+        pi[v] = u;
+    }
+}
+
+int extractMin(std::vector<int> &Q, std::vector<int> &d)
+{
+    int u = Q[0];
+    for (int v : Q)
+    {
+        if (d[v] < d[u])
+            u = v;
+    }
+    Q.erase(std::remove(Q.begin(), Q.end(), u), Q.end());
+    return u;
+}
+
+void dijkstra(Graph &G, int s)
+{
+    std::vector<int> d(G.V, INF);
+    std::vector<int> pi(G.V, -1);
+    std::vector<int> Q(G.V);
+
+    for (int i = 0; i < G.V; ++i)
+        Q[i] = i;
+
+    initializeSingleSource(G, s, d, pi);
+
+    while (!Q.empty())
+    {
+        int u = extractMin(Q, d);
+        for (auto &neighbor : G.adj[u])
         {
-            if (min > dist[j] && visited[j] == 0)
-            {
-                min = dist[j];
-                u = j;
-            }
-        }
-        visited[u] = 1;
-        for (v = 1; v <= n; v++)
-        {
-            if (visited[v] == 0)
-            {
-                if (dist[v] > dist[u] + cost[u][v])
-                    dist[v] = dist[u] + cost[u][v];
-            }
+            int v = neighbor.first;
+            int weight = neighbor.second;
+            relax(u, v, weight, d, pi);
         }
     }
-    return dist[dest];
+
+    for (int i = 0; i < G.V; ++i)
+    {
+        std::cout << "Vertex " << i << ": Distance = " << d[i] 
+        << ", Predecessor = " << (pi[i] == -1 ? "NULL" : std::to_string(pi[i])) 
+        << std::endl;
+    }
 }
 
 int main()
 {
-    int n, cost[10][10], source, dest, dist;
+    int V, E;
     cout << "Enter the number of vertices: ";
-    cin >> n;
-    cout << "Enter the cost matrix: ";
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            cin >> cost[i][j];
+    cin >> V;
+    cout << "Enter the number of edges: ";
+    cin >> E;
+    if (E > V * (V - 1) / 2)
+    {
+        cout << "Error: Too many edges" << endl;
+        return 0;
+    }
+    else if (E < V - 1)
+    {
+        cout << "Error: Too few edges" << endl;
+        return 0;
+    }
+    Graph G(V);
+    cout << "Enter the edges (u, v, w) : " << endl;
+    for (int i = 0; i < E; ++i)
+    {
+        int u, v, weight;
+        cin >> u >> v >> weight;
+        G.addEdge(u, v, weight);
+    }
+    int s;
     cout << "Enter the source vertex: ";
-    cin >> source;
-    cout << "Enter the destination vertex: ";
-    cin >> dest;
-    dist = Dijakstra(n, cost, source, dest);
-    cout << "The shortest distance between " << source << " and " << dest << " is " << dist << endl;
+    cin >> s;
+    dijkstra(G, s);
     return 0;
 }
-

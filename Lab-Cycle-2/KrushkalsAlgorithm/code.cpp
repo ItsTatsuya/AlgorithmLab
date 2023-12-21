@@ -1,88 +1,111 @@
-#include <algorithm>
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 using namespace std;
 
-#define edge pair<int, int>
-
-class Graph {
-  private:
- vector<pair<int, edge> > G; // graph
- vector<pair<int, edge> > T; // mst
- int *parent;
- int V; // number of vertices/nodes in graph
-
-  public:
- Graph(int V);
- void AddWeightedEdge(int u, int v, int w);
- int find_set(int i);
- void union_set(int u, int v);
- void kruskal();
- void print();
+struct Edge
+{
+    int u, v, weight;
 };
 
-Graph::Graph(int V) {
- parent = new int[V];
- for (int i = 0; i < V; i++)
-   parent[i] = i;
- G.clear();
- T.clear();
+class DisjointSet
+{
+private:
+    vector<int> parent, rank;
+
+public:
+    DisjointSet(int n)
+    {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; ++i)
+            parent[i] = i;
+    }
+
+    int findSet(int v)
+    {
+        if (v == parent[v])
+            return v;
+        return parent[v] = findSet(parent[v]);
+    }
+
+    void unionSets(int a, int b)
+    {
+        a = findSet(a);
+        b = findSet(b);
+        if (a != b)
+        {
+            if (rank[a] < rank[b])
+                swap(a, b);
+            parent[b] = a;
+            if (rank[a] == rank[b])
+                rank[a]++;
+        }
+    }
+};
+
+vector<Edge> kruskalMST(vector<Edge> &edges, int n)
+{
+    vector<Edge> result;
+
+    sort(edges.begin(), edges.end(), [](const Edge &a, const Edge &b)
+         { return a.weight < b.weight; });
+
+    DisjointSet ds(n);
+
+    for (const Edge &edge : edges)
+    {
+        int u = edge.u;
+        int v = edge.v;
+
+        if (ds.findSet(u) != ds.findSet(v))
+        {
+            result.push_back(edge);
+            ds.unionSets(u, v);
+        }
+    }
+
+    return result;
 }
 
-void Graph::AddWeightedEdge(int u, int v, int w) {
- G.push_back(make_pair(w, edge(u, v)));
-}
+int main()
+{
+    int n, m, totalCost = 0;
+    cout << "Enter the number of vertices: ";
+    cin >> n;
+    cout << "Enter the number of edges: ";
+    cin >> m;
+    if (m < n - 1)
+    {
+        cout << "Number of edges must be greater than or equal to : " << n - 1 << "\n";
+        return 1;
+    }
+    else if (m > n * (n - 1) / 2)
+    {
+        cout << "Number of edges must be less than or equal to : " << n * (n - 1) / 2 << "\n";
+        return 1;
+    }
 
-int Graph::find_set(int i) {
- if (i == parent[i])
-   return i;
- else
-   return find_set(parent[i]);
-}
+    vector<Edge> edges;
 
-void Graph::union_set(int u, int v) {
- parent[u] = parent[v];
-}
+    cout << "Enter edge details (u v w) for each edge:\n";
+    for (int i = 0; i < m; i++)
+    {
+        int u, v, w;
+        cout << "Edge " << i + 1 << ": ";
+        cin >> u >> v >> w;
+        edges.push_back({u, v, w});
+    }
 
-void Graph::kruskal() {
- int i, uRep, vRep;
- sort(G.begin(), G.end()); // increasing weight
- for (i = 0; i < G.size(); i++) {
-   uRep = find_set(G[i].second.first);
-   vRep = find_set(G[i].second.second);
-   if (uRep != vRep) {
-     T.push_back(G[i]); // add to tree
-     union_set(uRep, vRep);
-   }
- }
-}
+    vector<Edge> minimumSpanningTree = kruskalMST(edges, n);
 
-void Graph::print() {
- cout << "Edge :" << " Weight" << endl;
- for (int i = 0; i < T.size(); i++) {
-   cout << T[i].second.first << " - " << T[i].second.second << " : " << T[i].first;
-   cout << endl;
- }
-}
-
-int main() {
- Graph g(6);
- g.AddWeightedEdge(0, 1, 4);
- g.AddWeightedEdge(0, 2, 4);
- g.AddWeightedEdge(1, 2, 2);
- g.AddWeightedEdge(1, 0, 4);
- g.AddWeightedEdge(2, 0, 4);
- g.AddWeightedEdge(2, 1, 2);
- g.AddWeightedEdge(2, 3, 3);
- g.AddWeightedEdge(2, 5, 2);
- g.AddWeightedEdge(2, 4, 4);
- g.AddWeightedEdge(3, 2, 3);
- g.AddWeightedEdge(3, 4, 3);
- g.AddWeightedEdge(4, 2, 4);
- g.AddWeightedEdge(4, 3, 3);
- g.AddWeightedEdge(5, 2, 2);
- g.AddWeightedEdge(5, 4, 3);
- g.kruskal();
- g.print();
- return 0;
+    cout << "\nEdges of the Minimum Spanning Tree:\n";
+    for (const Edge &edge : minimumSpanningTree)
+    {
+        totalCost += edge.weight;
+        cout << edge.u << " - " << edge.v << " : " << edge.weight << "\n";
+    }
+    cout << "Total cost of the Minimum Spanning Tree: " << totalCost << "\n";
+    return 0;
 }

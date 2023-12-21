@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void knapsack(int wt[], int val[], int n, int W) //with items taken shown
+void knapsack(int wt[], int val[], int n, int W) // with items taken shown
 {
     int dp[n + 1][W + 1];
     for (int i = 0; i <= n; i++)
@@ -23,21 +23,30 @@ void knapsack(int wt[], int val[], int n, int W) //with items taken shown
             i--;
         else
         {
-            cout << wt[i - 1] << " ";
+            cout << i << " ";
             j -= wt[i - 1];
             i--;
         }
     }
     cout << endl;
-          
 }
 
 int main()
 {
-    int wt[] = {5, 4, 6, 3};
-    int val[] = {10, 40,30,50};
-    int W = 10;
-    int n = sizeof(wt) / sizeof(wt[0]);
+    int n, W;
+    cout << "Enter the number of items: ";
+    cin >> n;
+    int wt[n], val[n];
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter the weight of item " << i + 1 << ": ";
+        cin >> wt[i];
+        cout << "Enter the value of item " << i + 1 << ": ";
+        cin >> val[i];
+        cout << endl;
+    }
+    cout << "Enter the maximum capacity: ";
+    cin >> W;
     knapsack(wt, val, n, W);
     return 0;
 }
