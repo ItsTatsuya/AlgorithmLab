@@ -1,5 +1,3 @@
-//Dijakstra's Algorithm
-
 #include <iostream>
 using namespace std;
 
